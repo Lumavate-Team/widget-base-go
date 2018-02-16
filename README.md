@@ -21,7 +21,7 @@ docker run -d -p 5000:8080 --volume "$(pwd)"/widget:/go/src/widget gobasewidget:
 ```
 
 This command will run the container in detached mode.  It will map port 5000 on your machine to port 8080 on the container.
-It will map the widget directory to the /go/src/widget directory inside the container.  This will will allow you to modify files in your local widget directory, and it will reload the process when the files change.  You should be able to go to http://localhost:5000 
+It will map the widget directory to the /go/src/widget directory inside the container.  This will will allow you to modify files in your local widget directory, and it will reload the process when the files change.  You should be able to go to http://localhost:5000
 
 [Docker Run Options](https://docs.docker.com/engine/reference/commandline/run/)
 
@@ -46,5 +46,27 @@ you can then use the Container ID to stream the logs
 docker logs -f 676
 ```
 
+## Run inside Thor
 
+```
+DOCKER_IP=`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'`
+docker run --rm -d \
+-e "PUBLIC_KEY=mIhuoMJh0jbA5W4pUUNK" \
+-e "PRIVATE_KEY=LXycaMpw5BzgfhsS4ydNxGzJ36qMnPrQHI8u2x3wQCZCZyGtZ4sOQbkEWnHmVchZEa79a0Y3xK7IKCymSLkugyabbJUGuXfyuoKL" \
+-e "HOST_IP=$DOCKER_IP" \
+-e "WIDGET_PORT=8091" \
+--name=thor \
+-p 8090:4201 \
+quay.io/lumavate/thor:latest
 
+docker run -d --rm \
+  --volume "$(pwd)"/widget:/go/src/widget:rw \
+  -e "PUBLIC_KEY=mIhuoMJh0jbA5W4pUUNK" \
+  -e "PRIVATE_KEY=LXycaMpw5BzgfhsS4ydNxGzJ36qMnPrQHI8u2x3wQCZCZyGtZ4sOQbkEWnHmVchZEa79a0Y3xK7IKCymSLkugyabbJUGuXfyuoKL" \
+  -e "BASE_URL=http://$DOCKER_IP:8090/api" \
+  -e "WIDGET_URL_PREFIX=/ic/widget/" \
+  -e "PROTO=http://" \
+  --name=widget-base-go \
+  -p 8091:8080 \
+  quay.io/lumavate/widget-base-go:latest
+```
