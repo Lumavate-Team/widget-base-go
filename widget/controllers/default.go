@@ -24,13 +24,15 @@ type LumavateRequest struct {
 func (this *MainController) Get() {
   pwa_jwt := this.Ctx.GetCookie("pwa_jwt")
 
-  no_auth_redirect_url := fmt.Sprintf("https://%s?u=https://%s/%s/%s/%s",
-    this.Ctx.Input.Host(),
+  no_auth_redirect_url := fmt.Sprintf("%s%s?u=/%s/%s/%s",
+    os.Getenv("PROTO"),
     this.Ctx.Input.Host(),
     this.Ctx.Input.Param(":ic"),
     this.Ctx.Input.Param(":url_ref"),
     this.Ctx.Input.Param(":wid"),
     )
+
+  fmt.Println(no_auth_redirect_url)
 
   widget_data_url := fmt.Sprintf("/pwa/v1/widget-instances/%s",
     this.Ctx.Input.Param(":wid"),
