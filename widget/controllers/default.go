@@ -2,6 +2,7 @@ package controllers
 
 import (
   "github.com/astaxie/beego"
+  signer "github.com/Lumavate-Team/go-signer"
   "fmt"
   "os"
   "net/http"
@@ -38,7 +39,7 @@ func (this *MainController) Get() {
     this.Ctx.Input.Param(":wid"),
     )
 
-  s := Signer{}
+  s := signer.Signer{}
   signed_widget_data_url := fmt.Sprintf("%s%s",
     os.Getenv("BASE_URL"),
     s.GetSignature("get", widget_data_url, []byte{}))
