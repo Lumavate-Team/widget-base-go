@@ -12,7 +12,7 @@ type PropertyOptionsText struct {
 type PropertyText struct {
 	*PropertyBase
 	Default string
-  Options PropertyOptionsText
+	Options PropertyOptionsText `json:"options"`
 }
 
 func (p *PropertyText) MarshalJSON() (b []byte, e error) {
