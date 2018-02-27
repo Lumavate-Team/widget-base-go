@@ -9,8 +9,7 @@ type ComponentController struct {
 }
 
 func (this *ComponentController) Get() {
-	lp := &LumavateProperties{}
+  lp := &LumavateProperties{}
   this.Data["json"] = lp.GetAllComponents()
   this.ServeJSON()
 }
-

@@ -18,8 +18,8 @@ type MainController struct {
 type LumavateRequest struct {
   Payload struct {
     Data struct {
-			PageType component_data.PageTypeStruct
-			Quote component_data.QuoteStruct
+      PageType component_data.PageTypeStruct
+      Quote component_data.QuoteStruct
       SampleText string
     }
   }
@@ -60,7 +60,7 @@ func (this *MainController) Get() {
 
   luma_response := LumavateRequest{}
   json.Unmarshal(body, &luma_response)
-	
+
   this.Data["data"] = luma_response.Payload.Data
   this.TplName = "index.tpl"
 }
