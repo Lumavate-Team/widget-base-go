@@ -55,6 +55,7 @@ docker run --rm -d \
 -e "PRIVATE_KEY=LXycaMpw5BzgfhsS4ydNxGzJ36qMnPrQHI8u2x3wQCZCZyGtZ4sOQbkEWnHmVchZEa79a0Y3xK7IKCymSLkugyabbJUGuXfyuoKL" \
 -e "HOST_IP=$DOCKER_IP" \
 -e "WIDGET_PORT=8091" \
+-e "HOST_PORT=80" \
 --name=thor \
 -p 80:4201 \
 quay.io/lumavate/thor:latest
