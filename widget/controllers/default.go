@@ -3,6 +3,7 @@ package controllers
 import (
   "github.com/astaxie/beego"
   signer "github.com/Lumavate-Team/go-signer"
+  "github.com/Lumavate-Team/go-properties/component_data"
   "fmt"
   "os"
   "net/http"
@@ -17,6 +18,8 @@ type MainController struct {
 type LumavateRequest struct {
   Payload struct {
     Data struct {
+			PageType component_data.PageTypeStruct
+			Quote component_data.QuoteStruct
       SampleText string
     }
   }
@@ -32,8 +35,6 @@ func (this *MainController) Get() {
     this.Ctx.Input.Param(":url_ref"),
     this.Ctx.Input.Param(":wid"),
     )
-
-  fmt.Println(no_auth_redirect_url)
 
   widget_data_url := fmt.Sprintf("/pwa/v1/widget-instances/%s",
     this.Ctx.Input.Param(":wid"),
@@ -59,6 +60,7 @@ func (this *MainController) Get() {
 
   luma_response := LumavateRequest{}
   json.Unmarshal(body, &luma_response)
+	
   this.Data["data"] = luma_response.Payload.Data
   this.TplName = "index.tpl"
 }
