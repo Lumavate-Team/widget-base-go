@@ -56,14 +56,14 @@ docker run --rm -d \
 -e "HOST_IP=$DOCKER_IP" \
 -e "WIDGET_PORT=8091" \
 --name=thor \
--p 8090:4201 \
+-p 80:4201 \
 quay.io/lumavate/thor:latest
 
 docker run -d --rm \
   --volume "$(pwd)"/widget:/go/src/widget:rw \
   -e "PUBLIC_KEY=mIhuoMJh0jbA5W4pUUNK" \
   -e "PRIVATE_KEY=LXycaMpw5BzgfhsS4ydNxGzJ36qMnPrQHI8u2x3wQCZCZyGtZ4sOQbkEWnHmVchZEa79a0Y3xK7IKCymSLkugyabbJUGuXfyuoKL" \
-  -e "BASE_URL=http://$DOCKER_IP:8090" \
+  -e "BASE_URL=http://$DOCKER_IP" \
   -e "WIDGET_URL_PREFIX=/ic/widget/" \
   -e "PROTO=http://" \
   --name=widget-base-go \
