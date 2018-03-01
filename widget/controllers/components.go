@@ -4,13 +4,12 @@ import (
   "github.com/astaxie/beego"
 )
 
-type PropertyController struct {
+type ComponentController struct {
   beego.Controller
 }
 
-func (this *PropertyController) Get() {
+func (this *ComponentController) Get() {
   lp := &LumavateProperties{}
-  this.Data["json"] = lp.GetAllProperties()
+  this.Data["json"] = lp.GetAllComponents()
   this.ServeJSON()
 }
-
