@@ -91,11 +91,20 @@
   </header>
   <footer>
     <div class="author">
-      {{.data.Quote.ComponentData.QuoteText}}
+    <lumavate-quote
+        quote-text='{{.data.Quote.ComponentData.QuoteText}}'
+        font-size='{{.data.Quote.ComponentData.FontSize}}'
+        show-card={{.data.Quote.ComponentData.ShowCard}}
+        card-color='{{.data.Quote.ComponentData.CardColor}}'
+        quotation-marks={{.data.Quote.ComponentData.QuotationMarks}}
+        quotation-marks=
+        color='{{.data.Quote.ComponentData.Color}}'>
+      </lumavate-quote>
     </div>
   </footer>
   <div class="backdrop"></div>
 
 	<script src="static/js/reload.min.js"></script>
+	<script src="static/js/lumavate-components.js"></script>
 </body>
 </html>
