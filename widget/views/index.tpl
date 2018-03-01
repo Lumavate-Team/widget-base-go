@@ -2,18 +2,18 @@
 
 <html>
 <head>
-	<title>
+  <title>
       {{.data.PageType.ComponentData.DisplayName}}
-	</title>
+  </title>
 
 
-	<link rel="apple-touch-icon" sizes="180x180" href="/iot/favicon-180x180.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/iot/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/iot/favicon-16x16.png">
-	<link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="/iot/favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/iot/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/iot/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
 
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
   <style type="text/css">
     *,body {
@@ -101,7 +101,6 @@
   </footer>
   <div class="backdrop"></div>
 
-	<script src="static/js/reload.min.js"></script>
-	<script src="static/js/lumavate-components.js"></script>
+  <script src="static/js/lumavate-components.js"></script>
 </body>
 </html>
