@@ -91,7 +91,7 @@
   </header>
   <footer>
     <div class="author">
-      {{.data.Quote.ComponentData.Quote}}
+      {{.data.Quote.ComponentData.QuoteText}}
     </div>
   </footer>
   <div class="backdrop"></div>

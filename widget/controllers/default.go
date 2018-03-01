@@ -56,7 +56,11 @@ func (this *MainController) Get() {
 
   if res.StatusCode == 401 {
     this.Ctx.Redirect(302, no_auth_redirect_url)
-  }
+  } else if res.StatusCode == 403 {
+		this.Abort("403")
+  } else if res.StatusCode == 500 {
+		this.Abort("500")
+	}
 
   luma_response := LumavateRequest{}
   json.Unmarshal(body, &luma_response)
