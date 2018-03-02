@@ -88,14 +88,7 @@
     <div class="description">
       Beego is a simple & powerful Go web framework.
     </div>
-    <lumavate-quote
-        quote-text='{{.data.Quote.ComponentData.QuoteText}}'
-        font-size='{{.data.Quote.ComponentData.FontSize}}pt'
-        show-card={{.data.Quote.ComponentData.ShowCard}}
-        card-color='{{.data.Quote.ComponentData.CardColor}}'
-        quotation-marks={{.data.Quote.ComponentData.QuotationMarks}}
-        color='{{.data.Quote.ComponentData.Color}}'>
-      </lumavate-quote>
+    {{ componentHtml .data.Quote }}
   </header>
   <footer>
   </footer>
