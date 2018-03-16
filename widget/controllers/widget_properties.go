@@ -28,11 +28,29 @@ func (lp *LumavateProperties) GetComponentProperty() *properties.PropertyCompone
 }
 
 /*
+ * Gets a property that allows entry for 'SmallNavCard' data
+ */
+func (lp *LumavateProperties) GetSmallNavCardProperty() *properties.PropertyComponent {
+  return &properties.PropertyComponent{
+    &properties.PropertyBase{"smallNavCard", "Nav Cards", "Small Nav Card Settings", "Small Nav Card Data", ""},
+    lp.GetSmallNavCardComponent(), properties.PropertyOptionsComponent{[] string {"all"}, [] *properties.Component {lp.GetSmallNavCardComponent()} },
+  }
+}
+
+/*
  * Gets a description for the 'Quote' component.  This is defined in a central place
  */
 func (lp *LumavateProperties) GetQuoteComponent() *properties.Component {
   //return properties.LoadComponent(os.Getenv("BASE_URL"), "1.0.0", "quote")
   return properties.LoadComponent("https://experience.john.labelnexusdev.com", "1.0.0", "quote")
+}
+
+/*
+ * Gets a description for the 'SmallNavCard' component.  This is defined in a central place
+ */
+func (lp *LumavateProperties) GetSmallNavCardComponent() *properties.Component {
+  //return properties.LoadComponent(os.Getenv("BASE_URL"), "1.0.0", "quote")
+  return properties.LoadComponent("https://experience.john.labelnexusdev.com", "1.0.0", "smallNavCard")
 }
 
 /*
@@ -42,6 +60,7 @@ func (lp *LumavateProperties) GetAllProperties() [] properties.PropertyType {
   return [] properties.PropertyType {
     lp.GetTextProperty(),
     lp.GetComponentProperty(),
+    lp.GetSmallNavCardProperty(),
   }
 }
 
@@ -51,5 +70,6 @@ func (lp *LumavateProperties) GetAllProperties() [] properties.PropertyType {
 func (lp *LumavateProperties) GetAllComponents() [] *properties.Component {
   return [] *properties.Component {
     lp.GetQuoteComponent(),
+    lp.GetSmallNavCardComponent(),
   }
 }
