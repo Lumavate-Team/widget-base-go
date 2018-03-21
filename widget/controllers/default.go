@@ -21,6 +21,8 @@ type LumavateRequest struct {
       PageType component_data.PageTypeStruct
       Quote component_data.QuoteStruct
       SampleText string
+      NavBar component_data.NavBarStruct
+      NavBarItems component_data.NavBarItemStruct
     }
   }
 }
