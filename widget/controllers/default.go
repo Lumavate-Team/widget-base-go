@@ -22,7 +22,7 @@ type LumavateRequest struct {
       Quote component_data.QuoteStruct
       SampleText string
       NavBar component_data.NavBarStruct
-      NavBarItems component_data.NavBarItemStruct
+      NavBarItems [] component_data.NavBarItemStruct
     }
   }
 }
@@ -52,10 +52,10 @@ func (this *MainController) Get() {
   req.Header.Add("Content-Type", "application/json")
   req.Header.Add("Authorization", "Bearer " + pwa_jwt)
 
-	res, _ := http.DefaultClient.Do(req)
+  res, _ := http.DefaultClient.Do(req)
 
   defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
+  body, _ := ioutil.ReadAll(res.Body)
 
   if res.StatusCode == 401 {
     this.Ctx.Redirect(302, no_auth_redirect_url)
