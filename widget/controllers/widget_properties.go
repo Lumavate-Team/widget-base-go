@@ -1,8 +1,8 @@
 package controllers
 
 import (
-  properties "github.com/Lumavate-Team/go-properties"
-  _ "os"
+  properties "github.com/Lumavate-Team/lumavate-go-common/properties"
+  components "github.com/Lumavate-Team/lumavate-go-common/components"
 )
 
 type LumavateProperties struct {
@@ -20,10 +20,10 @@ func (lp *LumavateProperties) GetTextProperty() *properties.PropertyText {
 /*
  * Gets a property that allows entry for 'Quote' data
  */
-func (lp *LumavateProperties) GetComponentProperty() *properties.PropertyComponent {
+func (lp *LumavateProperties) GetQuoteProperty() *properties.PropertyComponent {
   return &properties.PropertyComponent{
     &properties.PropertyBase{"quote", "Quote", "Quote Settings", "Quote Data", ""},
-    lp.GetQuoteComponent(), properties.PropertyOptionsComponent{[] string {"all"}, [] *properties.Component {lp.GetQuoteComponent()} },
+    lp.GetQuoteComponent(), properties.PropertyOptionsComponent{[] string {"quote"}, [] *properties.Component {lp.GetQuoteComponent()} },
   }
 }
 
@@ -32,47 +32,9 @@ func (lp *LumavateProperties) GetComponentProperty() *properties.PropertyCompone
  */
 func (lp *LumavateProperties) GetQuoteComponent() *properties.Component {
   //return properties.LoadComponent(os.Getenv("BASE_URL"), "1.0.0", "quote")
-  return properties.LoadComponent("https://experience.john.labelnexusdev.com", "1.0.0", "quote")
-}
-
-/*
- * Gets a property that allows entry for 'NavBar' data
- */
-func (lp *LumavateProperties) GetNavBarProperty() *properties.PropertyComponent {
-  return &properties.PropertyComponent{
-    &properties.PropertyBase{"navBar", "Nav Bar", "Nav Bar Properties", "Nav Bar", ""},
-    lp.GetNavBarComponent(), properties.PropertyOptionsComponent{[] string {"navBar"}, [] *properties.Component {lp.GetNavBarComponent()} },
-  }
-}
-
-/*
- * Gets a property that allows entry for 'NavBarItems' data
- */
-func (lp *LumavateProperties) GetNavBarItemsProperty() *properties.PropertyComponents {
-  return &properties.PropertyComponents{
-    &properties.PropertyBase{"navBarItems", "Nav Bar", "Nav Bar Items", "Nav Bar", ""},
-    [] *properties.Component {}, properties.PropertyOptionsComponent{[] string {"navBarItem"}, [] *properties.Component {lp.GetNavBarItemComponent()} },
-  }
-}
-
-/*
- * Gets a description for the 'NavBar' component.  This is defined in a central place
- */
-func (lp *LumavateProperties) GetNavBarComponent() *properties.Component {
-  //return properties.LoadComponent(os.Getenv("BASE_URL"), "1.0.0", "quote")
-        comp := properties.LoadComponent("https://experience.john.labelnexusdev.com", "1.0.0", "navBar")
-        comp.Category = "navBar"
-        return comp
-}
-
-/*
- * Gets a description for the 'NavBarItem' component.  This is defined in a central place
- */
-func (lp *LumavateProperties) GetNavBarItemComponent() *properties.Component {
-  //return properties.LoadComponent(os.Getenv("BASE_URL"), "1.0.0", "quote")
-        comp :=properties.LoadComponent("https://experience.john.labelnexusdev.com", "1.0.0", "navBarItem")
-        comp.Category = "navBarItem"
-        return comp
+    comp := properties.LoadComponent("https://experience.lumavate.com", "1.0.0", "quote")
+    comp.Category = "quote"
+    return comp
 }
 
 /*
@@ -80,10 +42,10 @@ func (lp *LumavateProperties) GetNavBarItemComponent() *properties.Component {
  */
 func (lp *LumavateProperties) GetAllProperties() [] properties.PropertyType {
   return [] properties.PropertyType {
+    components.GetNavBarProperty(),
+    components.GetNavBarItemsProperty(),
     lp.GetTextProperty(),
-    lp.GetNavBarProperty(),
-    lp.GetNavBarItemsProperty(),
-    lp.GetComponentProperty(),
+    lp.GetQuoteProperty(),
   }
 }
 
@@ -92,8 +54,8 @@ func (lp *LumavateProperties) GetAllProperties() [] properties.PropertyType {
  */
 func (lp *LumavateProperties) GetAllComponents() [] *properties.Component {
   return [] *properties.Component {
+    components.GetNavBarComponent(),
+    components.GetNavBarItemComponent(),
     lp.GetQuoteComponent(),
-    lp.GetNavBarComponent(),
-    lp.GetNavBarItemComponent(),
   }
 }
