@@ -19,3 +19,7 @@ type LumavateRequest struct {
     }
   }
 }
+
+type CameraBase struct {
+  CameraData string `json:"cameraData"`
+}

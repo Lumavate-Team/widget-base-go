@@ -31,6 +31,7 @@ RUN go get github.com/astaxie/beego && \
   cd / && \
   sh /git.sh -i /root/.ssh/lumavate-components-rsa clone git@github.com:Lumavate-Team/lumavate-components.git && \
   cd lumavate-components && \
+  git checkout lumavate-camera-component && \
   npm install && \
   npm run build && \
   rm /root/.ssh/*

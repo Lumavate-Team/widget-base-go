@@ -13,10 +13,16 @@ func ComponentHtml(in component_data.ComponentData) (out template.HTML){
     return
 }
 
+func StaticPath() (out string) {
+	out = os.Getenv("WIDGET_URL_PREFIX") + os.Getenv("PUBLIC_KEY") + "/static"
+	return
+}
+
 func main() {
-	beego.SetStaticPath(os.Getenv("WIDGET_URL_PREFIX") + "static","static")
-	beego.SetStaticPath(os.Getenv("WIDGET_URL_PREFIX") + "lc","/lumavate-components/dist")
+	beego.SetStaticPath(os.Getenv("WIDGET_URL_PREFIX") + os.Getenv("PUBLIC_KEY") + "/static","static")
+	beego.SetStaticPath(os.Getenv("WIDGET_URL_PREFIX") + os.Getenv("PUBLIC_KEY") +  "/lc","/lumavate-components/dist")
 	beego.AddFuncMap("componentHtml", ComponentHtml)
+	beego.AddFuncMap("staticPath", StaticPath)
 	beego.Run()
 }
 

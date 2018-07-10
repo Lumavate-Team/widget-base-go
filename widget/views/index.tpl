@@ -23,7 +23,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="{{.CacheKey}}/static/css/style.css">
 
   </head>
 
@@ -37,12 +37,18 @@
       {{ componentHtml .data.Quote }}
     </header>
 
+    <lumavate-camera></lumavate-camera>
+
     <footer>
       {{ componentHtml .data.NavBar }}
     </footer>
     
     <div class="backdrop"></div>
 
-    <script src="lc/lumavate-components.js"></script>
+    <script type="text/javascript" src="{{.CacheKey}}/lc/lumavate-components.js"></script>
+    <script type="text/javascript">
+      window.cacheKey = {{.CacheKey}};
+
+    </script>
   </body>
 </html>

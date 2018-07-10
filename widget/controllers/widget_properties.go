@@ -23,7 +23,7 @@ func (lp *LumavateProperties) GetTextProperty() *properties.PropertyText {
 func (lp *LumavateProperties) GetQuoteProperty() *properties.PropertyComponent {
   return &properties.PropertyComponent{
     &properties.PropertyBase{"quote", "Quote", "Quote Settings", "Quote Data", ""},
-    lp.GetQuoteComponent(), properties.PropertyOptionsComponent{[] string {"quote"}, [] *properties.Component {lp.GetQuoteComponent()} },
+    lp.GetQuoteComponent(), &properties.PropertyOptionsComponent{[] string {"quote"}, [] *properties.Component {lp.GetQuoteComponent()} },
   }
 }
 
