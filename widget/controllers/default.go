@@ -45,9 +45,38 @@ func (this *MainController) Get() {
     fmt.Println(err)
   }
 
+  length := 0
+  for _, x := range imageData.Resources {
+    length = length + 1
+    fmt.Println(x)
+  }
+
   this.Data["images"] = imageData.Resources
   luma_response.Payload.Data.NavBar.ComponentData.NavBarItems = luma_response.Payload.Data.NavBarItems
   this.Data["WidgetInstancePrefix"] = os.Getenv("WIDGET_URL_PREFIX") + this.Ctx.Input.Param(":wid")
   this.Data["data"] = luma_response.Payload.Data
+  this.Data["album"] = true
+  this.Data["length"] = length
   this.TplName = "directory.tpl"
 }
+
+func (this *MainController) Post() {
+  luma_response := models.LumavateRequest {}
+  err := json.Unmarshal(this.LumavateGetData(), &luma_response)
+
+  if err != nil {
+    this.Abort("500")
+  }
+
+
+
+
+
+
+}
+
+
+
+
+
+

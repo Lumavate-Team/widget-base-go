@@ -5,6 +5,7 @@ import (
   "encoding/json"
   "widget/models"
   "fmt"
+  "time"
   _"math/rand"
   _"strconv"
 )
@@ -26,7 +27,7 @@ func (this *CameraController) Get() {
   this.TplName = "camera.tpl"
 }
 
-func (this *MainController) Post() {
+func (this *CameraController) Post() {
   luma_response := models.LumavateRequest{}
   json.Unmarshal(this.LumavateGetData(), &luma_response)
   identity := this.Ctx.Request.Header.Get("PWA-S")
@@ -36,7 +37,9 @@ func (this *MainController) Post() {
     fmt.Println(err)
   }
 
-  dataToSend := models.PhotoInfo{"peace", identity, cameraData}
+  filename := time.Now()
+
+  dataToSend := models.PhotoInfo{filename.String(), identity, cameraData}
   this.Data["json"] = nil
   this.Ctx.Output.SetStatus(200)
 
@@ -53,5 +56,7 @@ func (this *MainController) Post() {
     fmt.Println(error_response)
   }
 
-  this.Ctx.Redirect(302, "/")
+  fmt.Println(this.GetRedirectUrl(""))
+
+  this.Ctx.Redirect(302, this.GetRedirectUrl(""))
 }

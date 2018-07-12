@@ -23,6 +23,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <link rel="stylesheet" href="{{.CacheKey}}/static/css/directory.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -34,23 +35,41 @@
         <lumavate-header font-color="white" background-color="#23516A" show-back-button=true Text="Your Gallery"></lumavate-header>
     </header>
 
-    <div class="album">
-        <div class="inner">
-            <div class="header">
-                <p style="float: left; font-size: 13pt;">Album Title</p>
-                <p style="float: right; color: #707072;">1 Picture(s)</p>
-            </div>
-            <div style="clear: both;"></div>
-            <div class="images">
-                {{range .images}}
-                    <img src="{{.SecureUrl}}">
-                {{end}}
+    {{ if .album }}
+        <div class="album">
+            <div class="inner">
+                <div class="header">
+                    <p style="float: left; font-size: 13pt;">Album Title</p>
+                    <p style="float: right; color: #707072;">{{ .length }} Picture(s)</p>
+                </div>
+                <div style="clear: both;"></div>
+                <div class="images">
+                    {{range .images}}
+                        <img src="{{.SecureUrl}}">
+                    {{end}}
+                </div>
             </div>
         </div>
+
+    {{ else }}
+        <div class="none">
+            <div>You have no albums yet.</div>
+        </div>
+    {{ end }}
+
+    <div class="camera">
+        <button onclick='window.location = "{{ .WidgetInstancePrefix }}/camera"' class="mdc-fab" aria-label="Camera">
+            <span class="mdc-fab__icon material-icons">photo_camera</span>
+        </button>
     </div>
 
-
-    <button onclick='window.location = "{{ .WidgetInstancePrefix }}/camera"'>To Camera</button>
+    <form method="post">
+        <div class="add">
+            <button class="mdc-fab" aria-label="Add">
+                <span class="mdc-fab__icon material-icons">add</span>
+            </button>
+        </div>
+    </form>
 
     <footer>
 
@@ -59,7 +78,6 @@
     <script type="text/javascript" src="{{.CacheKey}}/lc/lumavate-components.js"></script>
     <script type="text/javascript">
       window.cacheKey = {{.CacheKey}};
-
     </script>
   </body>
 </html>

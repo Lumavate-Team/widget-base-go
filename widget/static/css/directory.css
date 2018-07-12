@@ -37,3 +37,26 @@
       width: 60pt;
       height: 88pt;
     }
+
+    .add {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+    }
+
+    .mdc-fab {
+      background-color: #23516A;
+    }
+
+    .camera {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+    }
+
+    .none {
+      color: grey;
+      text-align: center;
+      font-size: 14pt;
+      margin-top: 70%;
+    }
