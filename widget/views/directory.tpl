@@ -23,27 +23,38 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <link rel="stylesheet" href="{{.CacheKey}}/static/css/style.css">
+    <link rel="stylesheet" href="{{.CacheKey}}/static/css/directory.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 
   </head>
 
   <body>
     <header>
-
-      <h1 class="logo">Beego</h1>
-      <div class="description">
-        Beego is a simple & powerful Go web framework.
-      </div>
-      {{ componentHtml .data.Quote }}
+        <lumavate-header font-color="white" background-color="#23516A" show-back-button=true Text="Your Gallery"></lumavate-header>
     </header>
 
-    <lumavate-camera></lumavate-camera>
+    <div class="album">
+        <div class="inner">
+            <div class="header">
+                <p style="float: left; font-size: 13pt;">Album Title</p>
+                <p style="float: right; color: #707072;">1 Picture(s)</p>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="images">
+                {{range .images}}
+                    <img src="{{.SecureUrl}}">
+                {{end}}
+            </div>
+        </div>
+    </div>
+
+
+    <button onclick='window.location = "{{ .WidgetInstancePrefix }}/camera"'>To Camera</button>
 
     <footer>
-      {{ componentHtml .data.NavBar }}
+
     </footer>
-    
-    <div class="backdrop"></div>
 
     <script type="text/javascript" src="{{.CacheKey}}/lc/lumavate-components.js"></script>
     <script type="text/javascript">

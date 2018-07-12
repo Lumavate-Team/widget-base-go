@@ -3,7 +3,6 @@ package models
 import (
   common "github.com/Lumavate-Team/lumavate-go-common"
   widget "github.com/Lumavate-Team/lumavate-go-common/models"
-  component_data "github.com/Lumavate-Team/lumavate-go-common/properties/component_data"
 )
 
 type MainController struct {
@@ -14,12 +13,36 @@ type LumavateRequest struct {
   Payload struct {
     Data struct {
       widget.CommonWidgetStruct
-      Quote component_data.QuoteStruct
-      SampleText string
+      FormAction string `json:"formAction"`
     }
   }
 }
 
-type CameraBase struct {
-  CameraData string `json:"cameraData"`
+type CameraImage struct {
+  Image string `json:"data"`
+}
+
+type PhotoInfo struct {
+  Filename string `json:"fileName"`
+  SessionId string `json:"sessionId"`
+  Image CameraImage `json:"image"`
+}
+
+type ImageResponse struct {
+  Resources [] ImageData `json:"resources"`
+}
+
+type ImageData struct {
+  Backup bool `json:"backup"`
+  Bytes int `json:"bytes"`
+  CreatedAt string `json:"created_at"`
+  Format string `json:"format"`
+  Height int `json:"height"`
+  Public_Id string `json:"public_id"`
+  ResourceType string `json:"resource_type"`
+  SecureUrl string `json:"secure_url"`
+  Type string `json:"type"`
+  Url string `json:"url"`
+  Version int `json:"version"`
+  Width int `json:"width"`
 }
