@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="{{.CacheKey}}/static/css/directory.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-
   </head>
 
   <body>
@@ -35,49 +34,112 @@
         <lumavate-header font-color="white" background-color="#23516A" show-back-button=true Text="Your Gallery"></lumavate-header>
     </header>
 
-    {{ if .album }}
-        <div class="album">
-            <div class="inner">
-                <div class="header">
-                    <p style="float: left; font-size: 13pt;">Album Title</p>
-                    <p style="float: right; color: #707072;">{{ .length }} Picture(s)</p>
+    {{ if .visible }}
+        <div class="outer">
+            {{ range .images}}
+                <div class="border">
+                    <div class="inner">
+                            <div class="allImages"><img src="{{.SecureUrl}}"></div>
+                    </div>
                 </div>
-                <div style="clear: both;"></div>
-                <div class="images">
-                    {{range .images}}
-                        <img src="{{.SecureUrl}}">
-                    {{end}}
-                </div>
-            </div>
+            {{end}}
         </div>
 
+        {{ range .albums }}
+            <div class="albumBorder">
+                <div class="albumEdge">
+                    <div class="header">
+                        <p style="float: left; font-size: 13pt;">{{ .AlbumTitle }}</p>
+                        <p style="float: right; color: #707072;">{{ .PictureCount }} Picture(s)</p>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <div class="images">
+                        {{ if .AlbumImages }}
+                            {{range .AlbumImages}}
+                                <img style="width: 50px;" src="{{.SecureUrl}}">
+                            {{end}}
+                        {{ else }}
+                            <div style="margin: 55px;"></div>
+                        {{ end }}
+                    </div>
+                    <div class="addDelete">
+                      <button onclick="window.location = '{{ $.WidgetInstancePrefix }}/album?album={{ .AlbumTitle }}'" class="mdc-button">
+                          <i class="material-icons mdc-button__icon">photo_album</i>
+                      </button>
+                      <button onclick="window.location = '{{ $.WidgetInstancePrefix }}/add?album={{ .AlbumTitle }}'" class="mdc-button">
+                          <i class="material-icons mdc-button__icon">add</i>
+                      </button>
+                      <button class="mdc-button">
+                          <i class="material-icons mdc-button__icon">delete</i>
+                      </button>
+                    </div>
+                </div>
+            </div>
+        {{ end }}
+
     {{ else }}
-        <div class="none">
+        <div id="none">
             <div>You have no albums yet.</div>
         </div>
     {{ end }}
 
+    <div id="album" style="display: none">
+        <div class="newAlbum">
+            <form method="post">
+                <input type="text" id="albumTitle" name="albumTitle" placeholder="Album Title" class="mdc-text-field__input">
+                <p style="float: right; color: #707072;">0 Picture(s)</p>
+                <div style="clear: both;"></div>
+                <div class="buttons">
+                    <button type="submit" class="mdc-button">
+                        <i class="material-icons mdc-button__icon">save</i>
+                    </button>
+                    <button onclick="deleteAlbum()" class="mdc-button">
+                        <i class="material-icons mdc-button__icon">delete</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div style="padding: 35px;"></div>
+
     <div class="camera">
-        <button onclick='window.location = "{{ .WidgetInstancePrefix }}/camera"' class="mdc-fab" aria-label="Camera">
+        <button class="mdc-fab" onclick='window.location = "{{ .WidgetInstancePrefix }}/camera"' aria-label="Camera">
             <span class="mdc-fab__icon material-icons">photo_camera</span>
         </button>
     </div>
 
-    <form method="post">
-        <div class="add">
-            <button class="mdc-fab" aria-label="Add">
-                <span class="mdc-fab__icon material-icons">add</span>
-            </button>
-        </div>
-    </form>
+    <div class="add">
+        <button onclick="addAlbum()" class="mdc-fab" aria-label="Add">
+            <span class="mdc-fab__icon material-icons">add</span>
+        </button>
+    </div>
 
     <footer>
 
     </footer>
 
     <script type="text/javascript" src="{{.CacheKey}}/lc/lumavate-components.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+        crossorigin="anonymous"></script>
     <script type="text/javascript">
       window.cacheKey = {{.CacheKey}};
+
+      var albumHighlight = 'selectImage';
+      var $albums = $('.albumEdge').on("click", function(e) {
+        $(this).toggleClass(albumHighlight);
+      })
+
+      function addAlbum() {
+        document.getElementById('album').style.display ="block";
+        document.getElementById('none').style.display = "none";
+      }
+
+      function deleteAlbum() {
+        document.getElementById('album').style.display = "none";
+      }
     </script>
   </body>
 </html>

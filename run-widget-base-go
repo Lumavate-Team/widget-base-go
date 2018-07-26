@@ -6,7 +6,7 @@ docker run -d --rm \
 -e "BASE_URL=http://$DOCKER_IP" \
 -e "WIDGET_URL_PREFIX=/ic/widget1/" \
 -e "PROTO=http://" \
---volume /Users/jackeberhardt/dev/lumavate-components:/go/src/github.com/Lumavate-Team/lumavate-components:rw \
+--volume /Users/jackeberhardt/dev/lumavate-components:/lumavate-components:rw \
 --name=widget-base-go \
 -p 8091:8080 \
 widget-base-go:abc

@@ -34,14 +34,10 @@
         <lumavate-header font-color="white" background-color="#23516A" show-back-button=true Text="Your Gallery"></lumavate-header>
     </header>
 
-    <div class="main">
-        <lumavate-camera></lumavate-camera>
-    </div>
+    <lumavate-camera></lumavate-camera>
 
     <footer>
     </footer>
-    
-    <div class="backdrop"></div>
 
     <script type="text/javascript" src="{{.CacheKey}}/lc/lumavate-components.js"></script>
     <script type="text/javascript">

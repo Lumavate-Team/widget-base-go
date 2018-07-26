@@ -33,7 +33,7 @@ RUN go get github.com/astaxie/beego && \
   cd lumavate-components && \
   git checkout lumavate-camera-component && \
   npm install && \
-  npm run build && \
+  npm run-script build && \
   rm /root/.ssh/*
 
 CMD ["bee", "run"]

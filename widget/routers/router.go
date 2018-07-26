@@ -14,4 +14,6 @@ func init() {
     beego.Router("/:ic/:url_ref/discover/components", &controllers.ComponentController{})
 
     beego.Router("/:ic/:url_ref/:wid/camera", &controllers.CameraController{})
+    beego.Router("/:ic/:url_ref/:wid/album", &controllers.AlbumController{})
+    beego.Router("/:ic/:url_ref/:wid/add", &controllers.AddController{})
 }

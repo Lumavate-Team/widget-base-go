@@ -11,35 +11,59 @@
       background-color: #E9E9E9;
     }
 
-    .album {
-      margin: 10px;
-      background: white;
+    #album {
+      position: relative;
     }
 
-    .inner {
-      margin-top: 20px;
-      margin-bottom: 20px;
+    #createdAlbums {
+      position: relative;
     }
 
-    .header {
+    .newAlbum {
       padding: 10px;
+      background-color: white;
+      height: 135px;
+      margin: 10px;
+      position: relative;
+    }
+
+    .mdc-text-field__input {
+      padding: 0px;
+      width: 65%
     }
 
     .images {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-top: 15px;
+      text-align: left;
     }
 
     .images img {
-      margin: auto auto;
-      width: 60pt;
-      height: 88pt;
+      width: 50px;
+    }
+
+    .buttons {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      color: black;
+    }
+
+    .addDelete {
+      text-align: right;
+      color: black;
+      display: none;
+    }
+
+    .mdc-button:after, .mdc-button:before {
+      background-color: #23516A;
+    }
+
+    .mdc-button:not(:disabled) {
+      color: black
     }
 
     .add {
-      position: absolute;
+      position: fixed;
       right: 10px;
       bottom: 10px;
     }
@@ -49,14 +73,59 @@
     }
 
     .camera {
-      position: absolute;
+      position: fixed;
       left: 10px;
       bottom: 10px;
     }
 
-    .none {
+    #none {
       color: grey;
       text-align: center;
       font-size: 14pt;
       margin-top: 70%;
+    }
+
+    .outer {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 5px;
+    }
+
+    .border {
+      background-color: white;
+      padding: 5px;
+      margin: 4px;
+      width: 45%;
+    }
+
+    .inner {
+      width: 100%;
+      height: 100%;
+    }
+
+    .inner img {
+      width: 100%
+    }
+
+    .albumEdge {
+      background: white;
+      padding: 10px;
+    }
+
+    .albumEdge.selectImage .addDelete{
+      display: block;
+    }
+
+    .albumBorder {
+      margin: 10px;
+    }
+
+    .selectImage {
+      border: 3px solid #98DBDE;
+    }
+
+    .list-item.is-selected {
+        background-color: #ddd;
     }

@@ -6,8 +6,6 @@ import (
   "widget/models"
   "fmt"
   "time"
-  _"math/rand"
-  _"strconv"
 )
 
 type CameraController struct {
@@ -30,7 +28,6 @@ func (this *CameraController) Get() {
 func (this *CameraController) Post() {
   luma_response := models.LumavateRequest{}
   json.Unmarshal(this.LumavateGetData(), &luma_response)
-  identity := this.Ctx.Request.Header.Get("PWA-S")
 
   cameraData := models.CameraImage {}
   if err := json.Unmarshal(this.Ctx.Input.RequestBody, &cameraData); err != nil {
@@ -39,7 +36,7 @@ func (this *CameraController) Post() {
 
   filename := time.Now()
 
-  dataToSend := models.PhotoInfo{filename.String(), identity, cameraData}
+  dataToSend := models.PhotoInfo{filename.String(), "", cameraData}
   this.Data["json"] = nil
   this.Ctx.Output.SetStatus(200)
 
@@ -55,8 +52,4 @@ func (this *CameraController) Post() {
     json.Unmarshal(resp, &error_response)
     fmt.Println(error_response)
   }
-
-  fmt.Println(this.GetRedirectUrl(""))
-
-  this.Ctx.Redirect(302, this.GetRedirectUrl(""))
 }

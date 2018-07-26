@@ -18,22 +18,22 @@ type LumavateRequest struct {
   }
 }
 
+type Folder struct {
+  Album string `json:"album"`
+}
+
 type CameraImage struct {
   Image string `json:"data"`
 }
 
 type PhotoInfo struct {
   Filename string `json:"fileName"`
-  SessionId string `json:"sessionId"`
+  AlbumName string `json:"album"`
   Image CameraImage `json:"image"`
 }
 
-type ImageResponse struct {
-  Resources [] ImageData `json:"resources"`
-}
-
 type ImageData struct {
-  Backup bool `json:"backup"`
+  Backup int `json:"backup_bytes"`
   Bytes int `json:"bytes"`
   CreatedAt string `json:"created_at"`
   Format string `json:"format"`
@@ -45,4 +45,17 @@ type ImageData struct {
   Url string `json:"url"`
   Version int `json:"version"`
   Width int `json:"width"`
+  Tags [] string `json:"tags"`
+}
+
+type ImageResponse struct {
+  AlbumData [] Albums `json:"albumData"`
+  AlbumList [] string `json:"albums"`
+  Resources [] ImageData `json:"allImages"`
+}
+
+type Albums struct {
+  AlbumImages [] ImageData `json:"albumImages"`
+  AlbumTitle string `json:"albumTitle"`
+  PictureCount int `json:"pictureCount"`
 }
