@@ -62,6 +62,7 @@ func (this *MainController) Get() {
 }
 
 func (this *MainController) Post() {
+  fmt.Println("STEP 1 IN ALBUM POST")
   luma_response := models.LumavateRequest{}
   err := json.Unmarshal(this.LumavateGetData(), &luma_response)
 
@@ -69,16 +70,27 @@ func (this *MainController) Post() {
     this.Abort("500")
   }
 
+  fmt.Println("IN ALBUM POST")
+
   albumData := models.Folder{}
   albumData.Album = this.GetString("albumTitle")
   this.Data["json"] = nil
   this.Ctx.Output.SetStatus(200)
 
+  fmt.Println("ALBUM DATA")
+  fmt.Println(albumData)
+
   q := fmt.Sprintf("%v/cloudinary/upload/album",
     luma_response.Payload.Data.FormAction)
 
+  fmt.Println("URL TO SEND DATA")
+  fmt.Println(q)
+
   b, _ := json.Marshal(&albumData)
+  fmt.Println(string(b[:50]))
   resp, status := this.LumavatePost(q, b, true)
+
+  fmt.Println(status)
 
 
   if status != "200" {

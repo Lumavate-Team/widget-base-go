@@ -26,13 +26,19 @@ func (this *CameraController) Get() {
 }
 
 func (this *CameraController) Post() {
+  fmt.Println("STEP 1")
   luma_response := models.LumavateRequest{}
   json.Unmarshal(this.LumavateGetData(), &luma_response)
+
+  fmt.Println("IN PHOTO SUBMIT")
 
   cameraData := models.CameraImage {}
   if err := json.Unmarshal(this.Ctx.Input.RequestBody, &cameraData); err != nil {
     fmt.Println(err)
   }
+
+  fmt.Println("GETTING CAMERA DATA")
+  fmt.Println(cameraData)
 
   filename := time.Now()
 
@@ -43,8 +49,15 @@ func (this *CameraController) Post() {
   q := fmt.Sprintf("%v/cloudinary/upload",
     luma_response.Payload.Data.FormAction)
 
+  fmt.Println("URL TO SEND DATA")
+  fmt.Println(q)
+
   b, _ := json.Marshal(&dataToSend)
+  fmt.Println("THESE ARE THE BYTES")
+  fmt.Println(string(b[:1000]))
   resp, status := this.LumavatePost(q, b, true)
+
+  fmt.Println(status)
 
 
   if status != "200" {

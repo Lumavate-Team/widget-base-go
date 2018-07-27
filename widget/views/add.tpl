@@ -118,7 +118,7 @@
         http.setRequestHeader('Content-Type', 'application/json');
         http.setRequestHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
         http.setRequestHeader('Access-Control-Allow-Origin', '*');
-        http.setRequestHeader('Access-Control-Allow-Methods', '*');
+        http.setRequestHeader('Access-Control-Allow-Methods', 'PUT');
 
         http.send(JSON.stringify(payload));
       }

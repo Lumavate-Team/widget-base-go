@@ -31,7 +31,7 @@
 
   <body>
     <header>
-        <lumavate-header font-color="white" background-color="#23516A" show-back-button=true Text="Your Gallery"></lumavate-header>
+        <lumavate-header font-color="white" background-color="#23516A" show-back-button=true Text="Camera"></lumavate-header>
     </header>
 
     <lumavate-camera></lumavate-camera>
